@@ -1,0 +1,20 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        hashmap={}
+        hashmap1={}
+
+        for i in range(len(s)):
+            if s[i] not in hashmap and t[i] not in hashmap1: 
+                hashmap[s[i]]=t[i]
+                hashmap1[t[i]]=True
+            else:
+                try:
+                    if t[i]==hashmap[s[i]]:
+                        continue
+                except:
+                    return False
+                if t[i]!=hashmap[s[i]]:
+                    return False
+                
+        return True
+        
