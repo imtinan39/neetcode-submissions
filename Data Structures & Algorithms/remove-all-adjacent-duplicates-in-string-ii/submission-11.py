@@ -1,0 +1,29 @@
+class Solution:
+    def removeDuplicates(self, s: str, k: int) -> str:
+
+        tmp=""
+        count=0
+
+        stack=[]
+        hashmap={}
+        for i in s:
+            stack.append(i)
+            hashmap[i]=hashmap.get(i,0)+1
+            while stack and i==stack[-1] and count<k and hashmap[i]>=k:
+                tmp=stack.pop()+tmp
+                count+=1
+                if count==k:
+                    break
+            if count==k:
+                hashmap[i]=hashmap[i]-count
+                count=0
+                tmp=""
+            else:
+                for t in tmp:
+                    stack.append(t)
+                count=0
+                tmp=""
+
+        return "".join(stack)
+
+        
